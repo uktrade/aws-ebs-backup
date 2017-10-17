@@ -1,4 +1,4 @@
-FROM python:2
+FROM ubuntu
 
 ENV AWS_ACCESS_KEY_ID null
 ENV AWS_SECRET_ACCESS_KEY null
@@ -8,8 +8,8 @@ ENV EBS_RETENTION null
 
 RUN echo "force-unsafe-io" > /etc/dpkg/dpkg.cfg.d/02apt-speedup && \
     apt-get update && \
-    apt-get install -y cron jq && \
-    pip install awscli && \
+    apt-get install -y cron python3-pip jq && \
+    pip3 install awscli && \
     rm -rf /var/lib/apt/lists/*
 
 COPY crontab /etc/cron.d/ebs-backup
