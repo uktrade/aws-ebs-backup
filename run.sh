@@ -4,7 +4,7 @@ env -
 export $(cat /.env | xargs)
 
 DATE=$(date +%F)
-EXPIRE_DATE=$(date -d "-$EBS_RETENTION days" +%s)
+export EXPIRE_DATE=$(date -d "-$EBS_RETENTION days" +%s)
 
 aws ec2 create-snapshot --volume-id $EBS_ID --description "$EBS_ID-$DATE"
 
